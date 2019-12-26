@@ -4,22 +4,22 @@ services:
   - docker
 
 before_install:
-  - docker build -t jeevan/react-test -f ./client/DockerFile.dev ./client
+  - docker build -t jeevanbs/react-test -f ./client/DockerFile.dev ./client
 
 script:
-  - docker run -e CI=true jeevan/react-test npm test
+  - docker run -e CI=true jeevanbs/react-test npm test
 
 after_success:
-  - docker build -t jeevan/multi-client ./client
-  - docker build -t jeevan/multi-nginx ./nginx
-  - docker build -t jeevan/multi-server ./server
-  - docker build -t jeevan/multi-worker ./worker
+  - docker build -t jeevanbs/multi-client ./client
+  - docker build -t jeevanbs/multi-nginx ./nginx
+  - docker build -t jeevanbs/multi-server ./server
+  - docker build -t jeevanbs/multi-worker ./worker
 
   #Login to docker cli
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
   #Take those images and push to docker hub
-  - docker push jeevan/multi-client
-  - docker push jeevan/multi-nginx
-  - docker push jeevan/multi-server
-  - docker push jeevan/multi-worker
+  - docker push jeevanbs/multi-client
+  - docker push jeevanbs/multi-nginx
+  - docker push jeevanbs/multi-server
+  - docker push jeevanbs/multi-worker
